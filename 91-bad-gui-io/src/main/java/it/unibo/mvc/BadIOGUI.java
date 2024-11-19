@@ -40,14 +40,24 @@ public class BadIOGUI {
      */
     public BadIOGUI() {
         final JPanel canvas = new JPanel();
+        final JPanel panel = new JPanel();
         canvas.setLayout(new BorderLayout());
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         final JButton write = new JButton("Write on file");
-        canvas.add(write, BorderLayout.CENTER);
+        final JButton read = new JButton("Read on file");
+        panel.add(read);
+        panel.add(write);
+        canvas.add(panel);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
          * Handlers
          */
+        read.addActionListener(new ActionListener() {
+            public void actionPerformed(final ActionEvent e) {
+                System.out.println("String");
+            }
+        });
         write.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -90,15 +100,17 @@ public class BadIOGUI {
         /*
          * OK, ready to push the frame onscreen
          */
+        // set the frame to minimum size
+        frame.pack();
         frame.setVisible(true);
     }
 
     /**
      * Launches the application.
      *
-     * @param args ignored
+     * @param args ignoredrf
      */
     public static void main(final String... args) {
-       new BadIOGUI().display();
+        new BadIOGUI().display();
     }
 }
